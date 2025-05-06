@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb+srv://lohaveashish1111:K4wECG9ildoVtxQL@cluster0.uwzhinc.mongodb.net/user-curd?retryWrites=true&w=majority&appName=Cluster0
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000/api/users
+    depends_on:
+      - backend
